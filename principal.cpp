@@ -230,8 +230,36 @@ void menuProcesos(Lista *&inicio)
     } while (op != 6);
 }
 
-void menu() {
-    
+void menu()
+{
+    int op;
+
+    do
+    {
+        cout << "====== Menú Principal ======" << endl;
+        cout << "1. Gestión de Procesos\n";
+        cout << "2. Planificador de Procesos\n";
+        cout << "3. Gestión de Memoria\n";
+        cout << "4. Salir\n";
+
+        op = validarRango("Seleccione una opción: ", 1, 4);
+
+        switch (op)
+        {
+        case 1:
+            menuProcesos(inicioLista);
+            break;
+        case 2:
+            menuPlanificador(inicioLista, colaListos);
+            break;
+        case 3:
+            menuMemoria(inicioPila);
+            break;
+        case 4:
+            cout << "Saliendo del programa." << endl;
+            break;
+        }
+    } while (op != 4);
 }
 
 int main()
