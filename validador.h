@@ -47,3 +47,20 @@ string validarNombre(string msg) {
 
     return nombre;
 }
+
+bool validarConfirmacion(string msg) {
+    char respuesta;
+
+    do {
+        cout << msg << " (s/n): ";
+        cin >> respuesta;
+
+        respuesta = tolower(respuesta);
+
+        if (respuesta != 's' && respuesta != 'n') {
+            cout << "Respuesta inválida. Por favor, ingrese 's' para sí o 'n' para no." << endl;
+        }
+    } while (respuesta != 's' && respuesta != 'n');
+
+    return respuesta == 's';
+}
