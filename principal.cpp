@@ -12,10 +12,6 @@ Cola *colaListos = new Cola();
 Lista *inicioLista = NULL;
 Pila *inicioPila = NULL;
 
-int main() {
-    return 0;
-}
-
 void menuMemoria(Pila *&inicio)
 {
     int op;
@@ -61,4 +57,18 @@ void menuMemoria(Pila *&inicio)
             break;
         }
     } while (op != 5);
+}
+
+void menu() {
+    
+}
+
+int main()
+{
+    setlocale(LC_CTYPE, "Spanish");
+    menu();
+
+    colaListos->vaciar();
+    delete colaListos;
+    return 0;
 }
