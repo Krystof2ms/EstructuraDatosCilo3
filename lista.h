@@ -86,3 +86,43 @@ bool eliminarProceso(Lista *&inicio, int id)
 
     return false;
 }
+
+void buscarProceso(Lista *&inicio, int id)
+{
+    Lista *temp = inicio;
+    while (temp != NULL)
+    {
+        if (temp->proceso.id == id)
+        {
+            mostrarProceso(temp->proceso);
+            return;
+        }
+        temp = temp->siguiente;
+    }
+    cout << "Proceso no encontrado." << endl;
+}
+
+void mostrarLista(Lista *&inicio)
+{
+    Lista *temp = inicio;
+    while (temp != NULL)
+    {
+        mostrarProceso(temp->proceso);
+        temp = temp->siguiente;
+    }
+}
+
+void modificarProceso(Lista *&inicio, int id, Proceso nuevoProceso)
+{
+    Lista *temp = inicio;
+    while (temp != NULL)
+    {
+        if (temp->proceso.id == id)
+        {
+            temp->proceso = nuevoProceso;
+            return;
+        }
+        temp = temp->siguiente;
+    }
+    cout << "Proceso no encontrado." << endl;
+}
