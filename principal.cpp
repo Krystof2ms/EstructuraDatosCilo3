@@ -130,6 +130,25 @@ void menuPlanificador(Lista *&inicioLista, Cola *&colaListos)
     } while (op != 5);
 }
 
+void registrarProceso(Lista *&inicio)
+{
+    int id;
+    string nombre;
+    int prioridad;
+    Proceso nuevoProceso;
+
+    id = validarPositivo("Ingrese el ID del proceso: ", "El ID debe ser un número positivo.");
+    nombre = validarNombre("Ingrese el nombre del proceso: ");
+    prioridad = validarRango("Ingrese la prioridad del proceso (1-10): ", 1, 10);
+
+    nuevoProceso.id = id;
+    nuevoProceso.nombre = nombre;
+    nuevoProceso.prioridad = prioridad;
+
+    insertarFinal(inicio, nuevoProceso);
+    cout << "Proceso registrado exitosamente." << endl;
+}
+
 void menu() {
     
 }
