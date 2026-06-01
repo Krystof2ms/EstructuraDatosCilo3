@@ -20,32 +20,114 @@ struct Cola
 {
     NodoCola *inicio;
     NodoCola *final;
+
+    Cola()
+    {
+        inicio = NULL;
+        final = NULL;
+    }
+
+    void encolar(int idProceso)
+    {
+        NodoCola *nuevo_nodo = new NodoCola(idProceso);
+
+        if (this->final == NULL)
+        {
+            this->inicio = nuevo_nodo;
+            this->final = nuevo_nodo;
+        }
+        else
+        {
+            this->final->siguiente = nuevo_nodo;
+            this->final = nuevo_nodo;
+        }
+    }
+
+    bool desencolar(int *idProceso)
+    {
+        if (this->inicio == NULL)
+        {
+            return false;
+        }
+
+        NodoCola *temporal = this->inicio;
+        *idProceso = temporal->idProceso;
+        this->inicio = this->inicio->siguiente;
+
+        if (this->inicio == NULL)
+        {
+            this->final = NULL;
+        }
+
+        delete temporal;
+        return true;
+    }
+
+    bool estaVacia()
+    {
+        return this->inicio == NULL;
+    }
+
+    bool eliminarNodo(int idProceso)
+    {
+        if (this->inicio == NULL)
+        {
+            return false;
+        }
+
+        NodoCola *temp = this->inicio;
+        NodoCola *prev = NULL;
+
+        while (temp != NULL && temp->idProceso != idProceso)
+        {
+            prev = temp;
+            temp = temp->siguiente;
+        }
+
+        if (temp == NULL)
+        {
+            return false; // No se encontró el nodo
+        }
+
+        if (prev == NULL)
+        {
+            this->inicio = temp->siguiente; // El nodo a eliminar es el primero
+        }
+        else
+        {
+            prev->siguiente = temp->siguiente; // El nodo a eliminar está en medio o al final
+        }
+
+        if (temp == this->final)
+        {
+            this->final = prev; // Actualizar el final si se eliminó el último nodo
+        }
+
+        delete temp; // Liberar memoria del nodo eliminado
+        return true;
+    }
+
+    void vaciar()
+    {
+        NodoCola *temp;
+        while (this->inicio != NULL)
+        {
+            temp = this->inicio;
+            this->inicio = this->inicio->siguiente;
+            delete temp;
+        }
+        this->final = NULL;
+        this->inicio = NULL;
+    }
+
+    void mostrarCola()
+    {
+        NodoCola *temp = this->inicio;
+        while (temp != NULL)
+        {
+            cout << temp->idProceso << ", ";
+            temp = temp->siguiente;
+        }
+        cout << endl;
+    }
 };
-
-void encolar(Cola*& head, int idProceso) {
-    NodoCola* nuevo_nodo = new NodoCola(idProceso);
-
-    if (head->final == NULL) {
-        head->inicio = nuevo_nodo;
-        head->final = nuevo_nodo;
-    } else {
-        head->final->siguiente = nuevo_nodo;
-        head->final = nuevo_nodo;
-    }
-}
-
-void desencolar(Cola*& head, int* idProceso) {
-    if (head->inicio == NULL) {
-        return;
-    }
-
-    NodoCola* temporal = head->inicio;
-    *idProceso = temporal->idProceso;
-    head->inicio = head->inicio->siguiente;
-
-    if (head->inicio == NULL) {
-        head->final = NULL;
-    }
-
-    delete temporal;
-}
