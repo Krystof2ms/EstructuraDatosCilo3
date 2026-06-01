@@ -174,16 +174,13 @@ void menuProcesos(Lista *&inicio)
             registrarProceso(inicio);
             break;
         case 2:
-        
             cout << "Buscar proceso por ID seleccionado." << endl;
             {
                 id = validarPositivo("Ingrese el ID del proceso a buscar: ", "El ID debe ser un número positivo.");
                 buscarProceso(inicio, id);
             }
             break;
-        
         case 3:
-        
             cout << "Modificar proceso por ID seleccionado." << endl;
             {
                 id = validarPositivo("Ingrese el ID del proceso a modificar: ", "El ID debe ser un número positivo.");
@@ -193,9 +190,7 @@ void menuProcesos(Lista *&inicio)
                 modificarProceso(inicio, id, nuevoProceso);
             }
             break;
-        
         case 4:
-        
             cout << "Eliminar proceso por ID seleccionado." << endl;
             {
                 id = validarPositivo("Ingrese el ID del proceso a eliminar: ", "El ID debe ser un número positivo.");
@@ -209,9 +204,7 @@ void menuProcesos(Lista *&inicio)
                 }
             }
             break;
-        
         case 5:
-        
             cout << "Mostrar procesos seleccionado." << endl;
             if (inicio == NULL)
             {
@@ -222,7 +215,6 @@ void menuProcesos(Lista *&inicio)
                 mostrarLista(inicio);
             }
             break;
-        
         case 6:
             cout << "Volver seleccionado." << endl;
             break;
