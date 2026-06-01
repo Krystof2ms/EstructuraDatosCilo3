@@ -59,6 +59,77 @@ void menuMemoria(Pila *&inicio)
     } while (op != 5);
 }
 
+void menuPlanificador(Lista *&inicioLista, Cola *&colaListos)
+{
+    int op, id, idProceso;
+    bool procesoEjecutado = false;
+
+    do
+    {
+        procesoEjecutado = false;
+        cout << "====== Menú del Planificador ======\n";
+        cout << "1. Encolar proceso\n";
+        cout << "2. Desencolar proceso\n";
+        cout << "3. Mostrar procesos en cola\n";
+        cout << "4. Ejecutar procesos\n";
+        cout << "5. Volver\n";
+
+        op = validarRango("Seleccione una opción: ", 1, 5);
+
+        switch (op)
+        {
+        case 1:
+            if (inicioLista == NULL)
+            {
+                cout << "No hay procesos registrados para encolar." << endl;
+                break;
+            }
+
+            id = validarPositivo("Ingrese el ID del proceso a encolar: ", "El ID debe ser un número positivo.");
+
+            colaListos->encolar(id);
+            cout << "Proceso con ID " << id << " encolado exitosamente." << endl;
+            break;
+        case 2:
+            if (colaListos->desencolar(&idProceso))
+            {
+                cout << "Proceso desencolado con ID " << idProceso << "." << endl;
+            }
+            else
+            {
+                cout << "La cola está vacía. No hay procesos para desencolar." << endl;
+            }
+            break;
+        case 3:
+            if (colaListos->estaVacia())
+            {
+                cout << "No hay procesos en la cola." << endl;
+                break;
+            }
+
+            cout << "Procesos en la cola: ";
+            colaListos->mostrarCola();
+            break;
+        case 4:
+            while (colaListos->desencolar(&idProceso))
+            {
+                procesoEjecutado = true;
+                cout << "Ejecutando proceso con ID " << idProceso << ":" << endl;
+                buscarProceso(inicioLista, idProceso);
+            }
+
+            if (!procesoEjecutado)
+            {
+                cout << "No hay procesos en cola para ejecutar." << endl;
+            }
+            break;
+        case 5:
+            cout << "Volver seleccionado." << endl;
+            break;
+        }
+    } while (op != 5);
+}
+
 void menu() {
     
 }
