@@ -24,32 +24,39 @@ void apilar(Pila *&inicio, int idProceso)
     inicio = nueva_pila;
 }
 
-void desapilar(Pila *&inicio, int *idProceso)
+bool desapilar(Pila *&inicio, int *idProceso)
 {
     Pila *temporal;
 
     if (inicio == NULL)
     {
-        return;
+        return false;
     }
 
     temporal = inicio;
     *idProceso = temporal->idProceso;
     inicio = inicio->siguiente;
 
-    return;
+    return true;
 }
 
-bool estaVacia(Pila *inicio)
-{
-    return inicio == NULL;
-}
-
-int *tope(Pila *inicio)
+bool tope(Pila *inicio, int *idProceso)
 {
     if (inicio == NULL)
     {
-        return NULL;
+        return false;
     }
-    return &inicio->idProceso;
+    *idProceso = inicio->idProceso;
+    return true;
+}
+
+void vaciarPila(Pila *&inicio)
+{
+    Pila *temp;
+    while (inicio != NULL)
+    {
+        temp = inicio;
+        inicio = inicio->siguiente;
+        delete temp;
+    }
 }
