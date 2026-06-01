@@ -3,64 +3,86 @@
 
 using namespace std;
 
-struct Proceso {
+struct Proceso
+{
     int id;
     string nombre;
     int prioridad;
 };
 
-struct Lista {
+struct Lista
+{
     Proceso proceso;
-    Lista* siguiente;
+    Lista *siguiente;
 
-    Lista(Proceso proceso) {
+    Lista(Proceso p)
+    {
+        proceso = p;
         siguiente = NULL;
     }
 };
 
-void insertarInicio(Lista*& inicio, Proceso proceso) {
-    Lista* nuevoNodo = new Lista(proceso);
+void mostrarProceso(Proceso proceso)
+{
+    cout << "ID: " << proceso.id << ",\tNombre: " << proceso.nombre;
+    cout << ",\tPrioridad: " << proceso.prioridad << endl;
+}
+
+void insertarInicio(Lista *&inicio, Proceso proceso)
+{
+    Lista *nuevoNodo = new Lista(proceso);
     nuevoNodo->siguiente = inicio;
     inicio = nuevoNodo;
 }
 
-void insertarFinal(Lista*& inicio, Proceso proceso) {
-    Lista* nuevoNodo = new Lista(proceso);
+void insertarFinal(Lista *&inicio, Proceso proceso)
+{
+    Lista *nuevoNodo = new Lista(proceso);
     nuevoNodo->siguiente = NULL;
 
-    if (inicio == NULL) {
+    if (inicio == NULL)
+    {
         inicio = nuevoNodo;
         return;
     }
 
-    Lista* temp = inicio;
-    while (temp->siguiente != NULL) {
+    Lista *temp = inicio;
+    while (temp->siguiente != NULL)
+    {
         temp = temp->siguiente;
     }
     temp->siguiente = nuevoNodo;
 }
 
-void eliminarProceso(Lista*& inicio, int id) {
-    Lista* temp = inicio;
-    Lista* nodoAEliminar;
+bool eliminarProceso(Lista *&inicio, int id)
+{
+    Lista *temp = inicio;
+    Lista *nodoAEliminar;
 
-    if (inicio == NULL) {
-        return;
+    if (inicio == NULL)
+    {
+        return false;
     }
 
-    if (inicio->proceso.id == id) {
+    if (inicio->proceso.id == id)
+    {
         inicio = inicio->siguiente;
         delete temp;
-        return;
+        return true;
     }
 
-    while (temp->siguiente != NULL && temp->siguiente->proceso.id != id) {
+    while (temp->siguiente != NULL && temp->siguiente->proceso.id != id)
+    {
         temp = temp->siguiente;
     }
 
-    if (temp->siguiente != NULL) {
+    if (temp->siguiente != NULL)
+    {
         nodoAEliminar = temp->siguiente;
         temp->siguiente = nodoAEliminar->siguiente;
         delete nodoAEliminar;
+        return true;
     }
+
+    return false;
 }
