@@ -60,3 +60,13 @@ void vaciarPila(Pila *&inicio)
         delete temp;
     }
 }
+
+void mostrarPila(Pila *inicio)
+{
+    Pila *temp = inicio;
+    while (temp != NULL)
+    {
+        cout << "ID del proceso con memoria en la pila: " << temp->idProceso << endl;
+        temp = temp->siguiente;
+    }
+}
