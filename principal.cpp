@@ -149,6 +149,87 @@ void registrarProceso(Lista *&inicio)
     cout << "Proceso registrado exitosamente." << endl;
 }
 
+void menuProcesos(Lista *&inicio)
+{
+    int op;
+    int id;
+    Proceso nuevoProceso;
+
+    do
+    {
+        cout << "====== Menú de Procesos ======" << endl;
+        cout << "1. Registrar proceso\n";
+        cout << "2. Buscar proceso por ID\n";
+        cout << "3. Modificar proceso por ID\n";
+        cout << "4. Eliminar proceso por ID\n";
+        cout << "5. Mostrar procesos\n";
+        cout << "6. Volver\n";
+
+        op = validarRango("Seleccione una opción: ", 1, 6);
+
+        switch (op)
+        {
+        case 1:
+            cout << "Registrar proceso seleccionado." << endl;
+            registrarProceso(inicio);
+            break;
+        case 2:
+        
+            cout << "Buscar proceso por ID seleccionado." << endl;
+            {
+                id = validarPositivo("Ingrese el ID del proceso a buscar: ", "El ID debe ser un número positivo.");
+                buscarProceso(inicio, id);
+            }
+            break;
+        
+        case 3:
+        
+            cout << "Modificar proceso por ID seleccionado." << endl;
+            {
+                id = validarPositivo("Ingrese el ID del proceso a modificar: ", "El ID debe ser un número positivo.");
+                nuevoProceso.id = validarPositivo("Ingrese el nuevo ID del proceso: ", "El ID debe ser un número positivo.");
+                nuevoProceso.nombre = validarNombre("Ingrese el nuevo nombre del proceso: ");
+                nuevoProceso.prioridad = validarRango("Ingrese la nueva prioridad del proceso (1-10): ", 1, 10);
+                modificarProceso(inicio, id, nuevoProceso);
+            }
+            break;
+        
+        case 4:
+        
+            cout << "Eliminar proceso por ID seleccionado." << endl;
+            {
+                id = validarPositivo("Ingrese el ID del proceso a eliminar: ", "El ID debe ser un número positivo.");
+                if (eliminarProceso(inicio, id))
+                {
+                    cout << "Proceso eliminado exitosamente." << endl;
+                }
+                else
+                {
+                    cout << "No se encontró un proceso con ese ID." << endl;
+                }
+            }
+            break;
+        
+        case 5:
+        
+            cout << "Mostrar procesos seleccionado." << endl;
+            if (inicio == NULL)
+            {
+                cout << "No hay procesos registrados." << endl;
+            }
+            else
+            {
+                mostrarLista(inicio);
+            }
+            break;
+        
+        case 6:
+            cout << "Volver seleccionado." << endl;
+            break;
+        }
+    } while (op != 6);
+}
+
 void menu() {
     
 }
