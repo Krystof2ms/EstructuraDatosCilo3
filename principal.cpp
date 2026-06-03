@@ -12,6 +12,20 @@ Cola *colaListos = new Cola();
 Lista *inicioLista = NULL;
 Pila *inicioPila = NULL;
 
+int validarId()
+{
+    int id;
+    do
+    {
+        id = validarPositivo("Ingrese el ID del proceso: ", "El ID debe ser un número positivo.");
+        if (buscarProceso(inicioLista, id))
+        {
+            cout << "El ID ya existe. Por favor, ingrese un ID único." << endl;
+        }
+    } while (buscarProceso(inicioLista, id));
+    return id;
+}
+
 void menuMemoria(Pila *&inicio)
 {
     int op;
@@ -31,7 +45,7 @@ void menuMemoria(Pila *&inicio)
         switch (op)
         {
         case 1:
-            idProceso = validarPositivo("Ingrese el ID del proceso a asignar memoria: ", "El ID debe ser un número positivo.");
+            idProceso = validarId();
             apilar(inicio, idProceso);
             cout << "Memoria asignada al proceso con ID " << idProceso << "." << endl;
             break;
@@ -85,7 +99,7 @@ void menuPlanificador(Lista *&inicioLista, Cola *&colaListos)
                 break;
             }
 
-            id = validarPositivo("Ingrese el ID del proceso a encolar: ", "El ID debe ser un número positivo.");
+            id = validarId();
 
             colaListos->encolar(id);
             cout << "Proceso con ID " << id << " encolado exitosamente." << endl;
@@ -137,7 +151,7 @@ void registrarProceso(Lista *&inicio)
     int prioridad;
     Proceso nuevoProceso;
 
-    id = validarPositivo("Ingrese el ID del proceso: ", "El ID debe ser un número positivo.");
+    id = validarId();
     nombre = validarNombre("Ingrese el nombre del proceso: ");
     prioridad = validarRango("Ingrese la prioridad del proceso (1-10): ", 1, 10);
 
@@ -145,7 +159,7 @@ void registrarProceso(Lista *&inicio)
     nuevoProceso.nombre = nombre;
     nuevoProceso.prioridad = prioridad;
 
-    insertarFinal(inicio, nuevoProceso);
+    insertarEnOrden(inicio, nuevoProceso);
     cout << "Proceso registrado exitosamente." << endl;
 }
 
