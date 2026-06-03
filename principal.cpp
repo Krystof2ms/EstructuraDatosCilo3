@@ -259,6 +259,8 @@ int main()
     setlocale(LC_CTYPE, "Spanish");
     menu();
 
+    vaciarLista(inicioLista);
+    vaciarPila(inicioPila);
     colaListos->vaciar();
     delete colaListos;
     return 0;
