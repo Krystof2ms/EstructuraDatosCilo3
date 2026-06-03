@@ -38,7 +38,7 @@ void insertarInicio(Lista *&inicio, Proceso proceso)
 void insertarFinal(Lista *&inicio, Proceso proceso)
 {
     Lista *nuevoNodo = new Lista(proceso);
-    nuevoNodo->siguiente = NULL;
+    Lista *temp = inicio;
 
     if (inicio == NULL)
     {
@@ -46,7 +46,6 @@ void insertarFinal(Lista *&inicio, Proceso proceso)
         return;
     }
 
-    Lista *temp = inicio;
     while (temp->siguiente != NULL)
     {
         temp = temp->siguiente;
