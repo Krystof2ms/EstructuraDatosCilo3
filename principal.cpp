@@ -191,13 +191,21 @@ void menuProcesos(Lista *&inicio)
             cout << "Buscar proceso por ID seleccionado." << endl;
             {
                 id = validarPositivo("Ingrese el ID del proceso a buscar: ", "El ID debe ser un número positivo.");
-                buscarProceso(inicio, id);
+                if (buscarProceso(inicio, id))
+                {
+                    cout << "Proceso encontrado." << endl;
+                }
+                else
+                {
+                    cout << "Proceso no encontrado." << endl;
+                }
             }
             break;
         case 3:
             cout << "Modificar proceso por ID seleccionado." << endl;
             {
                 id = validarPositivo("Ingrese el ID del proceso a modificar: ", "El ID debe ser un número positivo.");
+
                 nuevoProceso.id = validarPositivo("Ingrese el nuevo ID del proceso: ", "El ID debe ser un número positivo.");
                 nuevoProceso.nombre = validarNombre("Ingrese el nuevo nombre del proceso: ");
                 nuevoProceso.prioridad = validarRango("Ingrese la nueva prioridad del proceso (1-10): ", 1, 10);
