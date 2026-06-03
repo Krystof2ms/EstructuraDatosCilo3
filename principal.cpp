@@ -15,14 +15,17 @@ Pila *inicioPila = NULL;
 int validarId()
 {
     int id;
+    bool valido = false;
+
     do
     {
-        id = validarPositivo("Ingrese el ID del proceso: ", "El ID debe ser un número positivo.");
-        if (buscarProceso(inicioLista, id))
+        id = validarPositivo("Ingrese el ID del proceso: ", "El ID debe ser un nÃºmero positivo.");
+        valido = buscarProceso(inicioLista, id);
+        if (valido)
         {
-            cout << "El ID ya existe. Por favor, ingrese un ID único." << endl;
+            cout << "El ID ya existe. Por favor, ingrese un ID Ãºnico." << endl;
         }
-    } while (buscarProceso(inicioLista, id));
+    } while (valido);
     return id;
 }
 
