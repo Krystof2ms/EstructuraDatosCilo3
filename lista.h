@@ -53,6 +53,26 @@ void insertarFinal(Lista *&inicio, Proceso proceso)
     temp->siguiente = nuevoNodo;
 }
 
+void insertarEnOrden(Lista *&inicio, Proceso proceso)
+{
+    Lista *nuevoNodo = new Lista(proceso);
+    Lista *temp = inicio;
+
+    if (inicio == NULL || inicio->proceso.prioridad > proceso.prioridad)
+    {
+        nuevoNodo->siguiente = inicio;
+        inicio = nuevoNodo;
+        return;
+    }
+
+    while (temp->siguiente != NULL && temp->siguiente->proceso.prioridad <= proceso.prioridad)
+    {
+        temp = temp->siguiente;
+    }
+    nuevoNodo->siguiente = temp->siguiente;
+    temp->siguiente = nuevoNodo;
+}
+
 bool eliminarProceso(Lista *&inicio, int id)
 {
     Lista *temp = inicio;
