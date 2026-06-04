@@ -34,7 +34,7 @@ int validarId()
 }
 
 // Menú para gestionar la asignación y liberación de memoria mediante una pila
-void menuMemoria(Pila *&inicio)
+void menuMemoria(Pila *&inicio, Lista *&inicioLista)
 {
     int op;
     int idProceso;
@@ -54,9 +54,16 @@ void menuMemoria(Pila *&inicio)
         {
         case 1:
             // Asigna memoria apilando el ID del proceso
-            idProceso = validarId();
-            apilar(inicio, idProceso);
-            cout << "Memoria asignada al proceso con ID " << idProceso << "." << endl;
+            idProceso = validarPositivo("Ingrese el ID del proceso a buscar: ", "El ID debe ser un número positivo.");
+            if (buscarProceso(inicioLista, idProceso))
+            {
+                apilar(inicio, idProceso);
+            	cout << "Memoria asignada al proceso con ID " << idProceso << "." << endl;
+            }
+            else
+            {
+                cout << "Proceso no encontrado." << endl;
+            }
             break;
         case 2:
             // Libera memoria desapilando el proceso más recientemente asignado
@@ -302,7 +309,7 @@ void menu()
             break;
         case 3:
             // Accede al menú de gestión de memoria
-            menuMemoria(inicioPila);
+            menuMemoria(inicioPila, inicioLista);
             break;
         case 4:
             cout << "Saliendo del programa." << endl;
