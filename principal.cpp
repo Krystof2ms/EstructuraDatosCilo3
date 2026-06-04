@@ -119,12 +119,11 @@ void menuPlanificador(Lista *&inicioLista, Cola *&colaListos)
             	// Añade el proceso a la cola FIFO
             	colaListos->encolar(id);
             	cout << "Proceso con ID " << id << " encolado exitosamente." << endl;
-            	break;
 			} else 
 			{
 				cout << "No hay proceso con ese Id\n";
 			}
-            
+            break;
         case 2:
             // Extrae el primer proceso de la cola
             if (colaListos->desencolar(&idProceso))
