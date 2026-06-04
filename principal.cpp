@@ -227,9 +227,9 @@ void menuProcesos(Lista *&inicio)
             cout << "Modificar proceso por ID seleccionado." << endl;
             // Modifica los datos de un proceso existente
             {
-                id = validarId();
+                id = validarPositivo("Ingrese el nuevo ID del proceso: ", "El ID debe ser un número positivo.");
 
-                nuevoProceso.id = validarPositivo("Ingrese el nuevo ID del proceso: ", "El ID debe ser un número positivo.");
+                nuevoProceso.id = validarId();
                 nuevoProceso.nombre = validarNombre("Ingrese el nuevo nombre del proceso: ");
                 nuevoProceso.prioridad = validarRango("Ingrese la nueva prioridad del proceso (1-10): ", 1, 10);
                 modificarProceso(inicio, id, nuevoProceso);
