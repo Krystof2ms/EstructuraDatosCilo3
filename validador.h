@@ -41,7 +41,7 @@ string validarNombre(string msg) {
         cin >> nombre;
 
         if (nombre == "") {
-            cout << "El nombre no puede estar vacío. Por favor, ingrese un nombre válido." << endl;
+            cout << "El nombre no puede estar vacio. Por favor, ingrese un nombre vlido." << endl;
         }
     } while (nombre == "");
 
@@ -58,7 +58,7 @@ bool validarConfirmacion(string msg) {
         respuesta = tolower(respuesta);
 
         if (respuesta != 's' && respuesta != 'n') {
-            cout << "Respuesta inválida. Por favor, ingrese 's' para sí o 'n' para no." << endl;
+            cout << "Respuesta invalida. Por favor, ingrese 's' para si o 'n' para no." << endl;
         }
     } while (respuesta != 's' && respuesta != 'n');
 
