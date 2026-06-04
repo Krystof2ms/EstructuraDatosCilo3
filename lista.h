@@ -133,17 +133,15 @@ void mostrarLista(Lista *&inicio)
 
 void modificarProceso(Lista *&inicio, int id, Proceso nuevoProceso)
 {
-    Lista *temp = inicio;
-    while (temp != NULL)
+    if (eliminarProceso(inicio, id))
     {
-        if (temp->proceso.id == id)
-        {
-            temp->proceso = nuevoProceso;
-            return;
-        }
-        temp = temp->siguiente;
+        insertarEnOrden(inicio, nuevoProceso);
+        cout << "Proceso modificado exitosamente." << endl;
     }
-    cout << "Proceso no encontrado." << endl;
+    else
+    {
+        cout << "Proceso no encontrado." << endl;
+    }
 }
 
 void vaciarLista(Lista *&inicio)
