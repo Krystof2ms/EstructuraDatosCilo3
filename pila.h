@@ -3,6 +3,7 @@
 
 using namespace std;
 
+// Nodo de la pila que almacena el ID de un proceso
 struct Pila
 {
     int idProceso;
@@ -16,6 +17,7 @@ struct Pila
     }
 };
 
+// Agrega un elemento al tope de la pila
 void apilar(Pila *&inicio, int idProceso)
 {
     Pila *nueva_pila = new Pila(idProceso);
@@ -24,6 +26,7 @@ void apilar(Pila *&inicio, int idProceso)
     inicio = nueva_pila;
 }
 
+// Extrae el elemento del tope de la pila
 bool desapilar(Pila *&inicio, int *idProceso)
 {
     Pila *temporal;
@@ -40,6 +43,7 @@ bool desapilar(Pila *&inicio, int *idProceso)
     return true;
 }
 
+// Obtiene el ID del proceso en el tope sin extraerlo
 bool tope(Pila *inicio, int *idProceso)
 {
     if (inicio == NULL)
@@ -50,6 +54,7 @@ bool tope(Pila *inicio, int *idProceso)
     return true;
 }
 
+// Libera toda la memoria de la pila
 void vaciarPila(Pila *&inicio)
 {
     Pila *temp;
@@ -61,6 +66,7 @@ void vaciarPila(Pila *&inicio)
     }
 }
 
+// Muestra todos los IDs de procesos almacenados en la pila
 void mostrarPila(Pila *inicio)
 {
     Pila *temp = inicio;

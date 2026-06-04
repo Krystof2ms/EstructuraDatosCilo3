@@ -3,6 +3,7 @@
 
 using namespace std;
 
+// Nodo de la cola que almacena el ID de un proceso
 struct NodoCola
 {
     int idProceso;
@@ -16,6 +17,7 @@ struct NodoCola
     }
 };
 
+// Estructura de cola FIFO que mantiene referencias al inicio y final
 struct Cola
 {
     NodoCola *inicio;
@@ -27,6 +29,7 @@ struct Cola
         final = NULL;
     }
 
+    // Agrega un elemento al final de la cola
     void encolar(int idProceso)
     {
         NodoCola *nuevo_nodo = new NodoCola(idProceso);
@@ -43,6 +46,7 @@ struct Cola
         }
     }
 
+    // Extrae el elemento del inicio de la cola
     bool desencolar(int *idProceso)
     {
         if (this->inicio == NULL)
@@ -63,11 +67,13 @@ struct Cola
         return true;
     }
 
+    // Verifica si la cola estÃ¡ vacÃ­a
     bool estaVacia()
     {
         return this->inicio == NULL;
     }
 
+    // Busca y elimina un nodo especÃ­fico por ID de proceso
     bool eliminarNodo(int idProceso)
     {
         if (this->inicio == NULL)
@@ -86,7 +92,7 @@ struct Cola
 
         if (temp == NULL)
         {
-            return false; // No se encontró el nodo
+            return false; // No se encontrï¿½ el nodo
         }
 
         if (prev == NULL)
@@ -95,18 +101,19 @@ struct Cola
         }
         else
         {
-            prev->siguiente = temp->siguiente; // El nodo a eliminar está en medio o al final
+            prev->siguiente = temp->siguiente; // El nodo a eliminar estï¿½ en medio o al final
         }
 
         if (temp == this->final)
         {
-            this->final = prev; // Actualizar el final si se eliminó el último nodo
+            this->final = prev; // Actualizar el final si se eliminï¿½ el ï¿½ltimo nodo
         }
 
         delete temp; // Liberar memoria del nodo eliminado
         return true;
     }
 
+    // Libera toda la memoria de la cola
     void vaciar()
     {
         NodoCola *temp;
@@ -120,6 +127,7 @@ struct Cola
         this->inicio = NULL;
     }
 
+    // Muestra todos los IDs de procesos en la cola
     void mostrarCola()
     {
         NodoCola *temp = this->inicio;
@@ -130,4 +138,4 @@ struct Cola
         }
         cout << endl;
     }
-};
+}; // Fin de la estructura Cola

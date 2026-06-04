@@ -3,6 +3,7 @@
 
 using namespace std;
 
+// Estructura que representa un proceso con ID, nombre y prioridad
 struct Proceso
 {
     int id;
@@ -10,6 +11,7 @@ struct Proceso
     int prioridad;
 };
 
+// Nodo de la lista enlazada que almacena un proceso
 struct Lista
 {
     Proceso proceso;
@@ -22,12 +24,14 @@ struct Lista
     }
 };
 
+// Imprime los datos de un proceso en pantalla
 void mostrarProceso(Proceso proceso)
 {
     cout << "ID: " << proceso.id << ",\tNombre: " << proceso.nombre;
     cout << ",\tPrioridad: " << proceso.prioridad << endl;
 }
 
+// Inserta un proceso al inicio de la lista
 void insertarInicio(Lista *&inicio, Proceso proceso)
 {
     Lista *nuevoNodo = new Lista(proceso);
@@ -35,6 +39,7 @@ void insertarInicio(Lista *&inicio, Proceso proceso)
     inicio = nuevoNodo;
 }
 
+// Inserta un proceso al final de la lista
 void insertarFinal(Lista *&inicio, Proceso proceso)
 {
     Lista *nuevoNodo = new Lista(proceso);
@@ -53,6 +58,7 @@ void insertarFinal(Lista *&inicio, Proceso proceso)
     temp->siguiente = nuevoNodo;
 }
 
+// Inserta un proceso en orden ascendente por prioridad
 void insertarEnOrden(Lista *&inicio, Proceso proceso)
 {
     Lista *nuevoNodo = new Lista(proceso);
@@ -73,6 +79,7 @@ void insertarEnOrden(Lista *&inicio, Proceso proceso)
     temp->siguiente = nuevoNodo;
 }
 
+// Busca y elimina un proceso por su ID
 bool eliminarProceso(Lista *&inicio, int id)
 {
     Lista *temp = inicio;
@@ -106,6 +113,7 @@ bool eliminarProceso(Lista *&inicio, int id)
     return false;
 }
 
+// Busca un proceso por ID y lo muestra en pantalla
 bool buscarProceso(Lista *&inicio, int id)
 {
     Lista *temp = inicio;
@@ -121,6 +129,7 @@ bool buscarProceso(Lista *&inicio, int id)
     return false;
 }
 
+// Muestra todos los procesos en la lista
 void mostrarLista(Lista *&inicio)
 {
     Lista *temp = inicio;
@@ -131,6 +140,7 @@ void mostrarLista(Lista *&inicio)
     }
 }
 
+// Modifica un proceso eliminando el antiguo e insertando el nuevo ordenado
 void modificarProceso(Lista *&inicio, int id, Proceso nuevoProceso)
 {
     if (eliminarProceso(inicio, id))
@@ -144,6 +154,7 @@ void modificarProceso(Lista *&inicio, int id, Proceso nuevoProceso)
     }
 }
 
+// Libera toda la memoria de la lista enlazada
 void vaciarLista(Lista *&inicio)
 {
     Lista *temp;

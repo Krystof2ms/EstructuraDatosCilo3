@@ -3,6 +3,7 @@
 
 using namespace std;
 
+// Valida que un número ingresado esté dentro de un rango específico
 int validarRango(string msg, int min, int max) {
     int valor;
 
@@ -18,6 +19,7 @@ int validarRango(string msg, int min, int max) {
     return valor;
 }
 
+// Valida que un número ingresado sea positivo (mayor o igual a 0)
 int validarPositivo(string msg, string errorMsg) {
     int id;
 
@@ -33,6 +35,7 @@ int validarPositivo(string msg, string errorMsg) {
     return id;
 }
 
+// Valida que el nombre no esté vacío
 string validarNombre(string msg) {
     string nombre;
 
@@ -48,6 +51,7 @@ string validarNombre(string msg) {
     return nombre;
 }
 
+// Solicita confirmación al usuario (s/n) y retorna bool
 bool validarConfirmacion(string msg) {
     char respuesta;
 
