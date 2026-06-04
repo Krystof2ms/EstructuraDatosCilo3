@@ -19,11 +19,11 @@ int validarId()
 
     do
     {
-        id = validarPositivo("Ingrese el ID del proceso: ", "El ID debe ser un número positivo.");
+        id = validarPositivo("Ingrese el ID del proceso: ", "El ID debe ser un nÃºmero positivo.");
         valido = buscarProceso(inicioLista, id);
         if (valido)
         {
-            cout << "El ID ya existe. Por favor, ingrese un ID único." << endl;
+            cout << "El ID ya existe. Por favor, ingrese un ID Ãºnico." << endl;
         }
     } while (valido);
     return id;
@@ -36,14 +36,14 @@ void menuMemoria(Pila *&inicio)
 
     do
     {
-        cout << "====== Menú de la Memoria ======" << endl;
+        cout << "====== MenÃº de la Memoria ======" << endl;
         cout << "1. Asignar memoria a proceso\n";
         cout << "2. Liberar memoria de proceso\n";
         cout << "3. Mostrar procesos con memoria asignada\n";
         cout << "4. Vaciar memoria\n";
         cout << "5. Volver\n";
 
-        op = validarRango("Seleccione una opción: ", 1, 5);
+        op = validarRango("Seleccione una opciÃ³n: ", 1, 5);
 
         switch (op)
         {
@@ -84,14 +84,14 @@ void menuPlanificador(Lista *&inicioLista, Cola *&colaListos)
     do
     {
         procesoEjecutado = false;
-        cout << "====== Menú del Planificador ======\n";
+        cout << "====== MenÃº del Planificador ======\n";
         cout << "1. Encolar proceso\n";
         cout << "2. Desencolar proceso\n";
         cout << "3. Mostrar procesos en cola\n";
         cout << "4. Ejecutar procesos\n";
         cout << "5. Volver\n";
 
-        op = validarRango("Seleccione una opción: ", 1, 5);
+        op = validarRango("Seleccione una opciÃ³n: ", 1, 5);
 
         switch (op)
         {
@@ -114,7 +114,7 @@ void menuPlanificador(Lista *&inicioLista, Cola *&colaListos)
             }
             else
             {
-                cout << "La cola está vacía. No hay procesos para desencolar." << endl;
+                cout << "La cola estÃ¡ vacÃ­a. No hay procesos para desencolar." << endl;
             }
             break;
         case 3:
@@ -174,7 +174,7 @@ void menuProcesos(Lista *&inicio)
 
     do
     {
-        cout << "====== Menú de Procesos ======" << endl;
+        cout << "====== MenÃº de Procesos ======" << endl;
         cout << "1. Registrar proceso\n";
         cout << "2. Buscar proceso por ID\n";
         cout << "3. Modificar proceso por ID\n";
@@ -182,7 +182,7 @@ void menuProcesos(Lista *&inicio)
         cout << "5. Mostrar procesos\n";
         cout << "6. Volver\n";
 
-        op = validarRango("Seleccione una opción: ", 1, 6);
+        op = validarRango("Seleccione una opciÃ³n: ", 1, 6);
 
         switch (op)
         {
@@ -193,7 +193,7 @@ void menuProcesos(Lista *&inicio)
         case 2:
             cout << "Buscar proceso por ID seleccionado." << endl;
             {
-                id = validarPositivo("Ingrese el ID del proceso a buscar: ", "El ID debe ser un número positivo.");
+                id = validarPositivo("Ingrese el ID del proceso a buscar: ", "El ID debe ser un nÃºmero positivo.");
                 if (buscarProceso(inicio, id))
                 {
                     cout << "Proceso encontrado." << endl;
@@ -207,9 +207,9 @@ void menuProcesos(Lista *&inicio)
         case 3:
             cout << "Modificar proceso por ID seleccionado." << endl;
             {
-                id = validarPositivo("Ingrese el ID del proceso a modificar: ", "El ID debe ser un número positivo.");
+                id = validarId();
 
-                nuevoProceso.id = validarPositivo("Ingrese el nuevo ID del proceso: ", "El ID debe ser un número positivo.");
+                nuevoProceso.id = validarPositivo("Ingrese el nuevo ID del proceso: ", "El ID debe ser un nÃºmero positivo.");
                 nuevoProceso.nombre = validarNombre("Ingrese el nuevo nombre del proceso: ");
                 nuevoProceso.prioridad = validarRango("Ingrese la nueva prioridad del proceso (1-10): ", 1, 10);
                 modificarProceso(inicio, id, nuevoProceso);
@@ -218,14 +218,14 @@ void menuProcesos(Lista *&inicio)
         case 4:
             cout << "Eliminar proceso por ID seleccionado." << endl;
             {
-                id = validarPositivo("Ingrese el ID del proceso a eliminar: ", "El ID debe ser un número positivo.");
+                id = validarPositivo("Ingrese el ID del proceso a eliminar: ", "El ID debe ser un nÃºmero positivo.");
                 if (eliminarProceso(inicio, id))
                 {
                     cout << "Proceso eliminado exitosamente." << endl;
                 }
                 else
                 {
-                    cout << "No se encontró un proceso con ese ID." << endl;
+                    cout << "No se encontrÃ³ un proceso con ese ID." << endl;
                 }
             }
             break;
@@ -253,13 +253,13 @@ void menu()
 
     do
     {
-        cout << "====== Menú Principal ======" << endl;
-        cout << "1. Gestión de Procesos\n";
+        cout << "====== MenÃº Principal ======" << endl;
+        cout << "1. GestiÃ³n de Procesos\n";
         cout << "2. Planificador de Procesos\n";
-        cout << "3. Gestión de Memoria\n";
+        cout << "3. GestiÃ³n de Memoria\n";
         cout << "4. Salir\n";
 
-        op = validarRango("Seleccione una opción: ", 1, 4);
+        op = validarRango("Seleccione una opciÃ³n: ", 1, 4);
 
         switch (op)
         {
