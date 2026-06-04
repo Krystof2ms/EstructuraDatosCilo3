@@ -86,7 +86,7 @@ struct Cola
 
         if (temp == NULL)
         {
-            return false; // No se encontrÃ³ el nodo
+            return false; // No se encontró el nodo
         }
 
         if (prev == NULL)
@@ -95,12 +95,12 @@ struct Cola
         }
         else
         {
-            prev->siguiente = temp->siguiente; // El nodo a eliminar estÃ¡ en medio o al final
+            prev->siguiente = temp->siguiente; // El nodo a eliminar está en medio o al final
         }
 
         if (temp == this->final)
         {
-            this->final = prev; // Actualizar el final si se eliminÃ³ el Ãºltimo nodo
+            this->final = prev; // Actualizar el final si se eliminó el último nodo
         }
 
         delete temp; // Liberar memoria del nodo eliminado
